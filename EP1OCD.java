@@ -75,7 +75,7 @@ public class EP1OCD {
         resp[0] = sobe; // como pode sobra o "1" no final, coloquei a casa 0 separada, e tipo mesmo se for zero aqui, isso nao afeta o numero pq é zero a esquerda, só nao sei quanto ao sinal se da algum problema
         return resp;
     }
-
+	
 
     public static void main(String[] args) {
         
@@ -83,8 +83,7 @@ public class EP1OCD {
         
         System.out.print("Numero de bits: ");
         int tam= sc.nextInt();
-        
-                
+                        
         String s1 = sc.next();
         String s2 = sc.next();
         
@@ -105,6 +104,7 @@ public class EP1OCD {
         for (int num : soma(a, b)) {
             System.out.print(num);
         } 
+		System.out.println("");
      
     }
 
