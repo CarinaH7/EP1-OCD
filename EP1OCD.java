@@ -1,13 +1,21 @@
+EP1OCD (2).java
+Semana passada
+3 de abr
+N
+Nicole Anginoli Costa criou e compartilhou 1 item em
+Pasta do Google Drive
+EP-OCD
+Java
+EP1OCD (2).java
+C
+Pode editar
+Você
 package ep1ocd;
 
 import java.util.Scanner;
 
 public class EP1OCD {
 
-    static char[] vetorChar(String num) {
-        char[] ch = num.toCharArray();
-        return ch;
-    }
     /* Transforma o vetor char em int*/
     static int [] vetorInt(String num){
         char[] c = num.toCharArray();
@@ -33,27 +41,50 @@ public class EP1OCD {
         return res;
     }
     /* Faz o complemento de 2 */
-    static int [] complementoDeDois(int [] num){
-        int [] res =new int[num.length];
+    static int [] complementoDeDois(int [] vet){
+        int [] res =new int[vet.length];
         int[] um={1};
-        um=acertarCasas(num.length,um);
+        um=acertarCasas(vet.length,um);
         for(int i=0;i<res.length;i++){
-            if(num[i]==0) res[i]=1;
+            if(vet[i]==0) res[i]=1;
             else res[i]=0;
         }
-        res=soma(res,um); //Problema:essa soma aumenta o tamanho do res em 1
+	int sobe = 0;
+	for (int j = res.length-1; j >=0; j--){
+	    int aux = res[j] + um[j] + sobe;
+	    switch (aux){
+		case 0: 
+		    res[j] = 0;
+		    sobe = 0;
+		    break;
+		case 1: 
+		    res[j] = 1;
+		    sobe = 0;
+		    break;
+		case 2: 
+		    res[j] = 0;
+		    sobe = 1;
+		    break;
+		case 3: 
+		    res[j] = 1;
+		    sobe = 1;
+		    break;
+	    }
+        }
+	
+	
         return res;
     }
     static int [] subtracao(int [] vet1, int[] vet2){
-        int [] num1=acertarCasas(vet1.length+1,vet1);
+    
         int [] num2 =complementoDeDois(vet2);
 
-        int [] res=soma(num1,num2);
+        int [] res=soma(vet1,num2);
 
         return res;
     }
     static int[] soma(int[] vet1, int[] vet2) {
-    //o vetor tem tamanho +1 pq as vezes sobra aquele 1 em cima e a soma fica com um bit a mais no final, posso estar fazendo a conta errado, mas se nao me engano é assim
+
         int[] resp = new int[vet1.length + 1]; 
         int sobe = 0;
         for (int i = vet1.length - 1; i >= 0; i--) {
@@ -72,10 +103,10 @@ public class EP1OCD {
                 sobe = 1;
             }
         }
-        resp[0] = sobe; // como pode sobra o "1" no final, coloquei a casa 0 separada, e tipo mesmo se for zero aqui, isso nao afeta o numero pq é zero a esquerda, só nao sei quanto ao sinal se da algum problema
+        resp[0] = sobe;
         return resp;
     }
-	
+
 
     public static void main(String[] args) {
         
@@ -83,29 +114,35 @@ public class EP1OCD {
         
         System.out.print("Numero de bits: ");
         int tam= sc.nextInt();
-                        
-        String s1 = sc.next();
-        String s2 = sc.next();
+	System.out.println("OPERACOES:");
+	System.out.println("1:	soma");
+	System.out.println("2:	subtracao");
+	System.out.println("3:	multiplicacao");
+	System.out.println("4:	divisao");
+	System.out.print("Digite o indice da operacao: ");
+
+	int op = sc.nextInt();
+       
+	System.out.print("Binario 1: ");
+	String s1 = sc.next();
+        
+	System.out.print("Binario 2: ");
+	String s2 = sc.next();
         
         int [] num1=vetorInt(s1);
         num1=acertarCasas(tam,num1);
 
         int [] num2=vetorInt(s2);
         num2=acertarCasas(tam,num2);
-
-        int [] sub= subtracao(num1,num2);
-        for (int i : sub) {
-            System.out.print(i);
-        }
-        System.out.println("");
-       //fiz os testes colocando numeros diretos ja que ainda nao arrumamos a entrada
-        int[] a = {0,1, 1, 0, 1};
-        int[] b = {0,0, 1, 1, 1};
-        for (int num : soma(a, b)) {
-            System.out.print(num);
-        } 
-		System.out.println("");
-     
+	
+	switch (op){
+	    case 1: for (int a : soma (num1, num2))
+			System.out.print(a);
+		    break;
+	    case 2: for (int a : subtracao (num1, num2))
+			System.out.print(a);
+		    break;	
+	}
+	System.out.println("");
     }
-
 }
