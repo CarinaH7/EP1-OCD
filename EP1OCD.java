@@ -1,15 +1,3 @@
-EP1OCD (2).java
-Semana passada
-3 de abr
-N
-Nicole Anginoli Costa criou e compartilhou 1 item em
-Pasta do Google Drive
-EP-OCD
-Java
-EP1OCD (2).java
-C
-Pode editar
-Você
 package ep1ocd;
 
 import java.util.Scanner;
